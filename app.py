@@ -21,6 +21,15 @@ def access_logs():
     print('Broadcasting now...')
     send(temp_list, broadcast=True)
 
+def debug_server():
+    socketio.run(app, port=6969, debug=True)
+
+def run_server():
+    socketio.run(app, port=6969, debug=False)
+
+def stop_server():
+    socketio.stop()
+
 
 if __name__ == '__main__':
-    socketio.run(app, port=6969, log_output=True)
+    run_server()
