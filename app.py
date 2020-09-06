@@ -1,3 +1,6 @@
+import sys
+import signal
+
 from flask import Flask
 from flask_socketio import SocketIO, send
 
@@ -30,6 +33,10 @@ def run_server():
 def stop_server():
     socketio.stop()
 
+def sig_handler(sig, frame):
+    stop_server()
+    sys.exit(0)
 
 if __name__ == '__main__':
+    signal.signal(signal.SIGTERM, sig_handler)
     run_server()
